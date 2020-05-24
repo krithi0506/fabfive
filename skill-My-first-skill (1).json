@@ -1,0 +1,410 @@
+{
+  "intents": [
+    {
+      "intent": "get_info_cases",
+      "examples": [
+        {
+          "text": "what are the number of cases?"
+        },
+        {
+          "text": "how many cases in india is affected ?"
+        }
+      ],
+      "description": "get to know the cases affected by COVID-19"
+    },
+    {
+      "intent": "get_info_prevention",
+      "examples": [
+        {
+          "text": "What are the preventive measures to be taken?"
+        },
+        {
+          "text": "What we can , we do to avoid covid?"
+        },
+        {
+          "text": "what are the measures to be taken?"
+        }
+      ],
+      "description": "prevention measures"
+    },
+    {
+      "intent": "get_info_lockdown",
+      "examples": [
+        {
+          "text": "Any information regarding lockdown?"
+        },
+        {
+          "text": "when will this lockdown end?"
+        },
+        {
+          "text": "what is current situation?"
+        }
+      ],
+      "description": "identifying the lockdown scenario"
+    },
+    {
+      "intent": "get_info_medicine",
+      "examples": [
+        {
+          "text": "can the virus be cured?"
+        },
+        {
+          "text": "is any of the medicines are effective?"
+        },
+        {
+          "text": "Is the medicine discovered?"
+        },
+        {
+          "text": "has the cure identified?"
+        }
+      ],
+      "description": "gathering info about medicines"
+    },
+    {
+      "intent": "get_info_area",
+      "examples": [
+        {
+          "text": "what are areas affected by this disease?"
+        },
+        {
+          "text": "what are the areas affected by lockdown?"
+        },
+        {
+          "text": "how many areas are affected by lockdown?"
+        }
+      ],
+      "description": "areas affected by lockdown"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "cases",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "case",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "issue",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "situation",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "lockdown",
+          "synonyms": [
+            "quarantine"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "area_affected",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Tamilnadu",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Delhi, Karnataka, Andhra Pradesh, Uttar Pradesh, Rajasthan",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "kerala",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Maharashtra",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "slot",
+      "parent": "Welcome",
+      "dialog_node": "slot_5_1590231059186"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1590313351636",
+      "variable": "$cases",
+      "dialog_node": "slot_6_1590313389139"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1590231059186",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1590231059209",
+      "previous_sibling": "handler_10_1590231059209"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_5_1590231059186",
+      "event_name": "input",
+      "dialog_node": "handler_10_1590231059209"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1590233205976",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1590233205981",
+      "previous_sibling": "handler_10_1590233205980"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_6_1590233205976",
+      "event_name": "input",
+      "dialog_node": "handler_10_1590233205980"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1590231085553",
+      "dialog_node": "slot_6_1590233205976"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "We will update you soon."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_6_1590313389139",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1590313389158",
+      "previous_sibling": "handler_4_1590313389158"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1590313389139",
+      "context": {
+        "cases": "@cases"
+      },
+      "conditions": "@cases",
+      "event_name": "input",
+      "dialog_node": "handler_4_1590313389158"
+    },
+    {
+      "type": "standard",
+      "title": "#get_info situation",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "In the south, Telangana continued to witness a jump in Covid-19 cases on Saturday, with 52 fresh cases reported besides a death"
+              },
+              {
+                "text": "On March 24, 2020, Prime Minister Narendra Modi announced in his address to the nation that the entire country would be in a complete lockdown for 21 days to check the spread of coronavirus. He said it was not a curfew, but, given the seriousness of the matter, it should be treated as no less.\n"
+              },
+              {
+                "text": "Most major cities in the country have ordered private companies to let employees work from home. All offices will remain shut or work with minimal staff till the end of the lockdown period. The central and several state governments have announced relief packages for daily-wage earners and other temporary workers.\n"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@situation",
+      "dialog_node": "node_3_1590313039528",
+      "previous_sibling": "node_1_1590313807950"
+    },
+    {
+      "type": "frame",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Delhi, Karnataka, Andhra Pradesh, Uttar Pradesh, Rajasthan, Kerala, Tamil Nadu"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#get_info_area",
+      "dialog_node": "node_10_1590231085553",
+      "previous_sibling": "node_3_1590313039528"
+    },
+    {
+      "type": "standard",
+      "title": "get_info_measures",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water. Why? Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands"
+              },
+              {
+                "text": "Maintain at least 1 metre (3 feet) distance between yourself and others. Why? When someone coughs, sneezes, or speaks they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person has the disease.\nAvoid going to crowded places. Why? Where people come together in crowds, you are more likely to come into close contact with someone that has COIVD-19 and it is more difficult to maintain physical distance of 1 metre (3 feet)."
+              },
+              {
+                "text": "Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately and wash your hands. Why? Droplets spread virus. By following good respiratory hygiene, you protect the people around you from viruses such as cold, flu and COVID-19."
+              },
+              {
+                "text": "Stay home and self-isolate even with minor symptoms such as cough, headache, mild fever, until you recover. Have someone bring you supplies. If you need to leave your house, wear a mask to avoid infecting others. Why? Avoiding contact with others will protect them from possible COVID-19 and other viruses."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#get_info_prevention",
+      "dialog_node": "node_4_1590314039922",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "get_info_medicines",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "no, still the research is going on."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#get_info_medicine",
+      "dialog_node": "node_1_1590313807950",
+      "previous_sibling": "node_5_1590313351636"
+    },
+    {
+      "type": "frame",
+      "title": "get_info_cases",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Confirmed\n132K   "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#get_info_cases",
+      "dialog_node": "node_5_1590313351636",
+      "previous_sibling": "node_4_1590314039922"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1590231085553",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "frame",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We are here to share with you the information regarding covid19."
+              },
+              {
+                "text": "How can I help you?"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
